@@ -13,4 +13,3 @@ services:
       MYSQL_DATABASE: timedeal
     ports:
       - '3306:3306'
-

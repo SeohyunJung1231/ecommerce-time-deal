@@ -5,6 +5,9 @@
 2. API 는 rest 규칙에 맞춰서 다음 그림과 같이 설계하였다.<br>
    ![rest-api.png](docs/rest-api.png)
 
+## API 문서
+swagger 를 통해 확인한다
+로컬 개발시, 앱 재생 후 `http://localhost:8080/swagger` 로 접속한다
 
 ## 개발 환경 세팅
 1. java 설치한다

@@ -1,5 +1,11 @@
+-- TODO 초기 구축 완료되면 제거한다
+drop database timedeal;
+create database timedeal;
+
+
 USE timedeal;
 
+-- TODO 왜 초기 실행이 적용이 안되지..
 START TRANSACTION;
 
 create table member(

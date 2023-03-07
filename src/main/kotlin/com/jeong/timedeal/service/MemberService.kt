@@ -13,17 +13,21 @@ class MemberService(
 
     fun create(memberRequest: MemberRequest): Long {
         // exist 확인
-        requireNotNull(memberRepository.findByAccount(memberRequest.account)) { "account already exists" }
+        require(!exist(memberRequest.account)) { "account already exists" }
 
         // 생성
         return memberRepository.save(
             Member(
                 roleId = memberRequest.role,
                 account = memberRequest.account,
+                password = memberRequest.password,
                 name = memberRequest.name,
                 email = memberRequest.email,
                 phone = memberRequest.phone
             )
         ).id
     }
+
+    private fun exist(account: String) = memberRepository.findByAccount(account) != null
+
 }

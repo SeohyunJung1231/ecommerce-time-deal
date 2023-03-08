@@ -22,8 +22,8 @@ class ProductController(
         return productService.create(productRequest)
     }
 
-//    @GetMapping("/{id}/members")
-//    fun getBuyers(@PathVariable id: Long): List<MemberResponse> {
-//        return productService.findMembers(id)
-//    }
+    @GetMapping("/{id}/members")
+    fun getBuyers(@PathVariable id: Long): List<MemberResponse> {
+        return productService.findMembers(id)
+    }
 }

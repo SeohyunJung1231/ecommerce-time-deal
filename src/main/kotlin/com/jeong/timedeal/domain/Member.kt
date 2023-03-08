@@ -15,9 +15,9 @@ data class Member(
 
     val account: String,
     val password: String,
-    var name: String?,
-    var email: String,
-    var phone: String?
+    var name: String? = null,
+    var email: String? = null,
+    var phone: String? = null
 
 ) {
     enum class Type {

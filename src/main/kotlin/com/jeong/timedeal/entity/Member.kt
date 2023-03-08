@@ -1,4 +1,4 @@
-package com.jeong.timedeal.domain
+package com.jeong.timedeal.entity
 
 import jakarta.persistence.*
 

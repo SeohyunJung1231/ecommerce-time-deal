@@ -1,7 +1,7 @@
 package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberRequest
-import com.jeong.timedeal.domain.Member
+import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.repo.MemberRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec

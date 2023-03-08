@@ -30,7 +30,7 @@ class MysqlConfig {
     fun entityManagerFactory(
         builder: EntityManagerFactoryBuilder, dataSource: DataSource
     ): LocalContainerEntityManagerFactoryBean {
-        return builder.dataSource(dataSource).packages("com.jeong.timedeal.domain").properties(
+        return builder.dataSource(dataSource).packages("com.jeong.timedeal.entity").properties(
             mutableMapOf(
                 Pair("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"),
                 Pair("hibernate.show_sql", "true"),

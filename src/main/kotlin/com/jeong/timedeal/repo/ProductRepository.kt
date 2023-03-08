@@ -1,10 +1,9 @@
 package com.jeong.timedeal.repo
 
-import com.jeong.timedeal.entity.Member
+import com.jeong.timedeal.entity.Product
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MemberRepository : JpaRepository<Member, Long>{
-    fun findByAccount(account: String): Member?
+interface ProductRepository : JpaRepository<Product, Long> {
 }

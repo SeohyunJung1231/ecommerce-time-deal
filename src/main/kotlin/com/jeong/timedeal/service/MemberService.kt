@@ -2,7 +2,7 @@ package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberRequest
 import com.jeong.timedeal.controller.model.MemberUpdateRequest
-import com.jeong.timedeal.domain.Member
+import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.repo.MemberRepository
 import org.springframework.stereotype.Service
 

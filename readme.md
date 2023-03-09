@@ -1,3 +1,5 @@
+## 프로젝트 설명
+
 ## 설계 
 1. ERD 설계는 다음과 같다.<br>
    ![erd.png](docs/erd.png)<br>

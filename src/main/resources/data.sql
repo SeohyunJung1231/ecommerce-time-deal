@@ -20,7 +20,7 @@ create table member(
     primary key (id)
 );
 create table role(
-    id bigint not null auto_increment,
+    id bigint not null,
     type varchar(20) not null,
     primary key (id)
 );
@@ -71,13 +71,13 @@ insert into permission (id, name, description) values --TODO 권한 쪽은 초�
 (1, 'PRODUCT_CREATE', 'access for product creation'),
 (2, 'PURCHASED_PRODUCT_LIST', 'access for list of purchased product');
 
-insert into role (id, type) values
-(1, 'ADMIN'),
-(2, 'USER');
+insert into role (id, type) values -- auto_increment 칼럼에는 0 이 들어가지 않음 (왜?)
+(0, 'ADMIN'),
+(1, 'USER');
 
 insert into role_permission (id, role_id, permission_id) values
-(1, 1, 1),
-(2, 2, 2);
+(1, 0, 1),
+(2, 1, 2);
 
 
 COMMIT;

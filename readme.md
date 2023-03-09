@@ -9,7 +9,7 @@
 swagger 를 통해 확인한다
 로컬 개발시, 앱 재생 후 `http://localhost:8080/swagger` 로 접속한다
 
-## 개발 환경 세팅
+## 로컬 개발 환경 세팅
 1. java 설치한다
    * 버전 : corretto 17
    
@@ -18,3 +18,5 @@ swagger 를 통해 확인한다
      ```bash
      cd docker; docker-compose up -d
      ```
+3. 앱을 실행한다
+4. `http://localhost:8080/swagger` 로 접속하여 API 확인 후 요청한다

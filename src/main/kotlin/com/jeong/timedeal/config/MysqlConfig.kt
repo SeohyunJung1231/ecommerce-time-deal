@@ -34,6 +34,7 @@ class MysqlConfig {
             mutableMapOf(
                 Pair("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"),
                 Pair("hibernate.show_sql", "true"),
+                Pair("hibernate.format_sql", "true"),
                 // TODO 네이밍 전략 안먹음. 에러 원인 찾아서 고친 후, entity 에 있는 네이밍 지정 제거
                 Pair("hibernate.naming.physical-strategy", "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl")
             )

@@ -15,7 +15,7 @@ class MemberService(
         require(!exist(memberRequest.account)) { "account already exists" }
         return memberRepository.save(
             Member(
-                roleId = memberRequest.role,
+                role = memberRequest.role,
                 account = memberRequest.account,
                 password = memberRequest.password,
                 name = memberRequest.name,

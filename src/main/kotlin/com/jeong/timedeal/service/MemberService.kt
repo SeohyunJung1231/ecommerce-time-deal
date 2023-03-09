@@ -2,7 +2,7 @@ package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberRequest
 import com.jeong.timedeal.controller.model.MemberUpdateRequest
-import com.jeong.timedeal.domain.Member
+import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.repo.MemberRepository
 import org.springframework.stereotype.Service
 
@@ -15,7 +15,7 @@ class MemberService(
         require(!exist(memberRequest.account)) { "account already exists" }
         return memberRepository.save(
             Member(
-                roleId = memberRequest.role,
+                role = memberRequest.role,
                 account = memberRequest.account,
                 password = memberRequest.password,
                 name = memberRequest.name,

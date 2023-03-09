@@ -1,7 +1,7 @@
 package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberRequest
-import com.jeong.timedeal.domain.Member
+import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.repo.MemberRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
@@ -17,11 +17,11 @@ class MemberServiceTest : BehaviorSpec({
     given("맴버 가입 요청") {
         val account = "account"
         val newMemberRequest =
-            MemberRequest(account = account, role = Member.Type.USER, password = "newPassword", email = "newEmail")
+            MemberRequest(account = account, role = Member.Role.USER, password = "newPassword", email = "newEmail")
 
         `when`("처음 가입한 맴버라면") {
             //TODO kotest 의 arbs 로 구현
-            val existedMember = Member(account = account, roleId = Member.Type.USER, password = "password")
+            val existedMember = Member(account = account, role = Member.Role.USER, password = "password")
             every { repository.findByAccount(any()) } returns existedMember
             then("이미 존재하는 계정이라고 예외를 발생한다") {
                 shouldThrow<IllegalArgumentException> { service.create(newMemberRequest) }
@@ -32,7 +32,7 @@ class MemberServiceTest : BehaviorSpec({
             every { repository.findByAccount(any()) } returns null
             every { repository.save(any()) } returns Member(
                 id = 1L,
-                roleId = Member.Type.USER,
+                role = Member.Role.USER,
                 account = "",
                 password = ""
             )

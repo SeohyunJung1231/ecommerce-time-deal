@@ -1,4 +1,4 @@
-package com.jeong.timedeal.domain
+package com.jeong.timedeal.entity
 
 import jakarta.persistence.*
 
@@ -9,9 +9,9 @@ data class Member(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
 
-    @Enumerated(EnumType.ORDINAL) //TODO 어떻게 해야 더 좋은 코드일지?
-    @Column(name = "role_id")
-    val roleId: Type,
+    @Enumerated(EnumType.ORDINAL) //TODO STRING, ORDINAL 중 무엇이 더 좋은 코드일지?
+    @Column(name = "role_id")//TODO fk 는 insert 시 무조건 매핑을 걸어야 하는지? cascade 란 뭔지?
+    val role: Role,
 
     val account: String,
     val password: String,
@@ -20,7 +20,7 @@ data class Member(
     var phone: String? = null
 
 ) {
-    enum class Type {
+    enum class Role {
         ADMIN, USER
     }
 }

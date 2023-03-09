@@ -1,3 +1,8 @@
+spring:
+  sql:
+    init:
+      mode: always # TODO 로컬 개발 완료시에는 제거해야함
+
 mysql:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver

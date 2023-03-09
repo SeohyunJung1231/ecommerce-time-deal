@@ -39,6 +39,7 @@ create table permission(
 create table product(
     id bigint not null auto_increment,
     seller_id bigint not null,
+    sale_time_id bigint not null,
     name varchar(20),
     price bigint not null,
     stock bigint not null,
@@ -46,7 +47,6 @@ create table product(
 );
 create table sale_time(
     id bigint not null auto_increment,
-    product_id bigint not null,
     sale_start_at datetime not null,
     sale_end_at datetime not null,
     primary key (id)
@@ -61,7 +61,7 @@ alter table member add foreign key (role_id) references role (id);
 alter table role_permission add foreign key (role_id) references role (id);
 alter table role_permission add foreign key (permission_id) references permission (id);
 alter table product add foreign key (seller_id) references member (id);
-alter table sale_time add foreign key (product_id) references product (id);
+alter table product add foreign key (sale_time_id) references sale_time (id);
 alter table member_product add foreign key (buyer_id) references member (id);
 alter table member_product add foreign key (product_id) references product (id);
 

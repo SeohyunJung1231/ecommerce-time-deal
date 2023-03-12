@@ -16,6 +16,9 @@ class PurchaseService(
 ) {
     fun purchase(memberId: Long, productId: Long): OrderSheetResponse {
         val member: Member = memberRepository.findById(memberId).get()
+        // TODO 권한쪽 구현되면, ADMIN 회원이 아닌 경우 에러처리 한다
+//        if (member.role != Member.Role.USER) throw AccessDeniedException()
+
         memberProductRepository.save(
             MemberProduct(
                 buyers = listOf(member), productId = productId, purchaseTime = LocalDateTime.now()

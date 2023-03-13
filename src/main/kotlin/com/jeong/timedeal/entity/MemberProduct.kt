@@ -10,9 +10,9 @@ data class MemberProduct(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "buyer_id")
-    val buyers: List<Member> = listOf(),
+    val buyer: Member,
     @Column(name = "product_id")
     val productId: Long,
 

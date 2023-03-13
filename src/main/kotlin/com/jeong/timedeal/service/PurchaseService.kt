@@ -21,7 +21,7 @@ class PurchaseService(
 
         memberProductRepository.save(
             MemberProduct(
-                buyers = listOf(member), productId = productId, purchaseTime = LocalDateTime.now()
+                buyer = member, productId = productId, purchaseTime = LocalDateTime.now()
             )
         )
         return OrderSheetResponse(memberId = memberId, productId = productId)

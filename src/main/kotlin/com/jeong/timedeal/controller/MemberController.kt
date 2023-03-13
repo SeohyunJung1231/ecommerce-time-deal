@@ -1,9 +1,6 @@
 package com.jeong.timedeal.controller
 
-import com.jeong.timedeal.controller.model.MemberRequest
-import com.jeong.timedeal.controller.model.MemberUpdateRequest
-import com.jeong.timedeal.controller.model.OrderSheetResponse
-import com.jeong.timedeal.controller.model.ProductResponse
+import com.jeong.timedeal.controller.model.*
 import com.jeong.timedeal.repo.MemberRepository
 import com.jeong.timedeal.service.MemberService
 import com.jeong.timedeal.service.PurchaseService
@@ -36,6 +33,12 @@ class MemberController(
     fun resign(@PathVariable id: Long): Long {
         memberRepository.deleteById(id)
         return id
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "회원 조회", description = "해당 API 호출시, 회원 상세정보가 조회됩니다")
+    fun get(@PathVariable id: Long): MemberResponse {
+        return memberService.get(id)
     }
 
     @PostMapping("/{memberId}/products/{productId}")

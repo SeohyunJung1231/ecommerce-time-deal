@@ -2,8 +2,10 @@ package com.jeong.timedeal.controller
 
 import com.jeong.timedeal.controller.model.MemberRequest
 import com.jeong.timedeal.controller.model.MemberUpdateRequest
+import com.jeong.timedeal.controller.model.OrderSheetResponse
 import com.jeong.timedeal.repo.MemberRepository
 import com.jeong.timedeal.service.MemberService
+import com.jeong.timedeal.service.PurchaseService
 import io.swagger.v3.oas.annotations.Operation
 import jakarta.transaction.Transactional
 import org.springframework.web.bind.annotation.*
@@ -12,13 +14,15 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/v1/members")
 class MemberController(
     private val memberService: MemberService,
-    private val memberRepository: MemberRepository
+    private val memberRepository: MemberRepository,
+    private val purchaseService: PurchaseService
 ) {
     @PostMapping
     @Operation(summary = "회원 가입 요청", description = "해당 API 호출시, 회원 가입됩니다")
     fun register(@RequestBody member: MemberRequest): Long {
         return memberService.create(member)
     }
+
     @PatchMapping("/{id}")
     @Operation(summary = "회원 수정 요청", description = "해당 API 호출시, 회원 정보가 수정됩니다")
     fun modify(@PathVariable id: Long, @RequestBody member: MemberUpdateRequest): Long {
@@ -31,5 +35,17 @@ class MemberController(
     fun resign(@PathVariable id: Long): Long {
         memberRepository.deleteById(id)
         return id
+    }
+
+    @PostMapping("/{memberId}/products/{productId}")
+    @Operation(summary = "상품 구매 요청", description = "해당 API 호출시, 상품을 구매합니다")
+    fun purchase(@PathVariable memberId: Long, @PathVariable productId: Long): OrderSheetResponse {
+        return purchaseService.purchase(memberId, productId)
+    }
+
+    @GetMapping("/{memberId}/products")
+    @Operation(summary = "구매 상품 목록 요청", description = "해당 API 호출시, 구매한 상품 목록을 가져옵니다")
+    fun getAllPurchasedProduct(@PathVariable memberId: Long) {
+        purchaseService.fetchAllPurchasedBy(memberId)
     }
 }

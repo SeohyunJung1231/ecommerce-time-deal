@@ -1,9 +1,6 @@
 package com.jeong.timedeal.controller
 
-import com.jeong.timedeal.controller.model.MemberRequest
-import com.jeong.timedeal.controller.model.MemberUpdateRequest
-import com.jeong.timedeal.controller.model.OrderSheetResponse
-import com.jeong.timedeal.controller.model.ProductResponse
+import com.jeong.timedeal.controller.model.*
 import com.jeong.timedeal.repo.MemberRepository
 import com.jeong.timedeal.service.MemberService
 import com.jeong.timedeal.service.PurchaseService
@@ -38,6 +35,12 @@ class MemberController(
         return id
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "회원 조회", description = "해당 API 호출시, 회원 상세정보가 조회됩니다")
+    fun get(@PathVariable id: Long): MemberResponse {
+        return memberService.get(id)
+    }
+
     @PostMapping("/{memberId}/products/{productId}")
     @Operation(summary = "상품 구매 요청", description = "해당 API 호출시, 상품을 구매합니다")
     fun purchase(@PathVariable memberId: Long, @PathVariable productId: Long): OrderSheetResponse {
@@ -46,7 +49,7 @@ class MemberController(
 
     @GetMapping("/{memberId}/products")
     @Operation(summary = "구매 상품 목록 요청", description = "해당 API 호출시, 구매한 상품 목록을 가져옵니다")
-    fun getAllPurchasedProduct(@PathVariable memberId: Long): List<ProductResponse> {
+    fun getAllPurchasedProduct(@PathVariable memberId: Long): List<PurchasedProductResponse> {
         return purchaseService.fetchAllPurchasedBy(memberId)
     }
 }

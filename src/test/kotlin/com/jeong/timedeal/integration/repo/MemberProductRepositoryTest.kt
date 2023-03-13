@@ -3,7 +3,7 @@ package com.jeong.timedeal.integration.repo
 import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.entity.MemberProduct
 import com.jeong.timedeal.entity.Product
-import com.jeong.timedeal.entity.SaleTime
+import com.jeong.timedeal.entity.SaleInfo
 import com.jeong.timedeal.repo.MemberProductRepository
 import com.jeong.timedeal.repo.MemberRepository
 import com.jeong.timedeal.repo.ProductRepository
@@ -37,11 +37,11 @@ class MemberProductRepositoryTest(
             phone = "123456"
         )
         val sellerId = memberRepository.save(seller).id
-        val buyerId = memberRepository.save(buyer).id
+        memberRepository.save(buyer)
 
         val product = Product(
             sellerId = sellerId,
-            saleTime = SaleTime(saleStartAt = LocalDateTime.now(), saleEndAt = LocalDateTime.now()),
+            saleInfo = SaleInfo(saleStartAt = LocalDateTime.now(), saleEndAt = LocalDateTime.now(), discount = 10, price = 9_000L),
             name = "cup",
             price = 10_000L,
             stock = 10L

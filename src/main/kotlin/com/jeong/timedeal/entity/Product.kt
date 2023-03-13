@@ -13,8 +13,8 @@ data class Product(
     val sellerId: Long,
 
     @OneToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "sale_time_id")
-    var saleTime: SaleTime,
+    @JoinColumn(name = "sale_info_id")
+    var saleInfo: SaleInfo,
 
     var name: String? = null,
     var price: Long,

@@ -1,9 +1,7 @@
 package com.jeong.timedeal.controller.model
 
-import com.jeong.timedeal.entity.SaleTime
-
 data class ProductUpdateRequest (
-    val saleTime: SaleTime?,
+//    val saleInfo: SaleInfo?, //TODO 추가 개발건
     val name: String?,
     val price: Long?,
     val stock: Long?

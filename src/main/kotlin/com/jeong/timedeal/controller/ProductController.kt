@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/v1/products")
-class ProductController(
+class ProductController( //TODO request body validation 추가
     private val productService: ProductService,
     private val productRepository: ProductRepository
 ) {

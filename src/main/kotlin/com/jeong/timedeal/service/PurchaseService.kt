@@ -1,7 +1,7 @@
 package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.OrderSheetResponse
-import com.jeong.timedeal.controller.model.ProductResponse
+import com.jeong.timedeal.controller.model.PurchasedProductResponse
 import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.entity.MemberProduct
 import com.jeong.timedeal.entity.Product
@@ -31,10 +31,10 @@ class PurchaseService(
         return OrderSheetResponse(memberId = memberId, productId = productId)
     }
 
-    fun fetchAllPurchasedBy(memberId: Long): List<ProductResponse> {
+    fun fetchAllPurchasedBy(memberId: Long): List<PurchasedProductResponse> {
         val memberProducts = memberProductRepository.findAllByBuyerId(memberId) ?: listOf()
         return memberProducts.map {
-            ProductResponse(
+            PurchasedProductResponse(
                 id = it.product.id,
                 name = it.product.name,
                 price = it.product.price,

@@ -2,6 +2,8 @@ package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberResponse
 import com.jeong.timedeal.controller.model.ProductRequest
+import com.jeong.timedeal.controller.model.ProductResponse
+import com.jeong.timedeal.controller.model.ProductUpdateRequest
 import com.jeong.timedeal.entity.Product
 import com.jeong.timedeal.entity.SaleTime
 import com.jeong.timedeal.repo.MemberProductRepository
@@ -31,6 +33,39 @@ class ProductService(
         return productRepository.save(product).id
     }
 
+    fun update(id: Long, productUpdateRequest: ProductUpdateRequest): Long {
+        val product: Product = productRepository.findById(id).get()
+        return productRepository.save(product.apply {
+            name = productUpdateRequest.name ?: name
+            price = productUpdateRequest.price ?: price
+            stock = productUpdateRequest.stock ?: stock
+            saleTime = productUpdateRequest.saleTime ?: saleTime //TODO 레코드 추가되는지 확인
+        }).id
+    }
+
+    fun get(productId: Long): ProductResponse {
+        require(exist(productId)) { "product with id: $productId does not exist" }
+        return productRepository.findById(productId).get().let { product ->
+            ProductResponse(
+                id = product.id,
+                name = product.name,
+                price = product.price,
+                stock = product.stock,
+                saleTime = product.saleTime
+            )
+        }
+    }
+
+    fun getAll(): List<ProductResponse> {
+        //TODO JPA 페이징 추가하기 필요
+        val products = productRepository.findAll() ?: listOf()
+        return products.map {
+            ProductResponse(
+                id = it.id, name = it.name, price = it.price, stock = it.stock, saleTime = it.saleTime
+            )
+        }
+    }
+
     fun findMembers(productId: Long): List<MemberResponse> {
         //TODO memberProductRepository 에서 find 하는게 맞나? 엔티티의 양방향/단방향이 맞는가? 매핑부터 방향 헷갈린다
         val memberProducts = memberProductRepository.findAllByProductId(productId) ?: listOf()
@@ -44,6 +79,7 @@ class ProductService(
                 phone = memberProduct.buyer.phone
             )
         }
-
     }
+
+    private fun exist(id: Long) = !productRepository.findById(id).isEmpty
 }

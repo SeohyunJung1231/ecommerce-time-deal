@@ -49,7 +49,7 @@ class MemberController(
 
     @GetMapping("/{memberId}/products")
     @Operation(summary = "구매 상품 목록 요청", description = "해당 API 호출시, 구매한 상품 목록을 가져옵니다")
-    fun getAllPurchasedProduct(@PathVariable memberId: Long): List<ProductResponse> {
+    fun getAllPurchasedProduct(@PathVariable memberId: Long): List<PurchasedProductResponse> {
         return purchaseService.fetchAllPurchasedBy(memberId)
     }
 }

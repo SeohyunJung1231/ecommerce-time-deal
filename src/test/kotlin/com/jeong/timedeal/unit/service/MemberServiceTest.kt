@@ -1,14 +1,14 @@
-package com.jeong.timedeal.service
+package com.jeong.timedeal.unit.service
 
 import com.jeong.timedeal.controller.model.MemberRequest
 import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.repo.MemberRepository
+import com.jeong.timedeal.service.MemberService
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
-import java.lang.IllegalArgumentException
 
 class MemberServiceTest : BehaviorSpec({
     val repository = mockk<MemberRepository>()

@@ -2,7 +2,6 @@ package com.jeong.timedeal.service
 
 import com.jeong.timedeal.controller.model.MemberResponse
 import com.jeong.timedeal.controller.model.ProductRequest
-import com.jeong.timedeal.entity.Member
 import com.jeong.timedeal.entity.Product
 import com.jeong.timedeal.entity.SaleTime
 import com.jeong.timedeal.repo.MemberProductRepository
@@ -34,11 +33,15 @@ class ProductService(
 
     fun findMembers(productId: Long): List<MemberResponse> {
         //TODO memberProductRepository 에서 find 하는게 맞나? 엔티티의 양방향/단방향이 맞는가? 매핑부터 방향 헷갈린다
-        val members = memberProductRepository.findByProductId(productId)?.buyers ?: listOf()
+        val memberProducts = memberProductRepository.findAllByProductId(productId) ?: listOf()
 
-        return members.map { member ->
+        return memberProducts.map { memberProduct ->
             MemberResponse(
-                id = member.id, account = member.account, name = member.name, email = member.email, phone = member.phone
+                id = memberProduct.buyer.id,
+                account = memberProduct.buyer.account,
+                name = memberProduct.buyer.name,
+                email = memberProduct.buyer.email,
+                phone = memberProduct.buyer.phone
             )
         }
 

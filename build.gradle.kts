@@ -25,8 +25,10 @@ dependencies {
 	// TODO jakarta bean validation 추가
 	runtimeOnly("com.mysql:mysql-connector-j")
 
-	testImplementation("io.kotest:kotest-runner-junit5:5.4.2")
-	testImplementation("io.kotest:kotest-assertions-core:5.4.2")
+	testImplementation("io.kotest:kotest-runner-junit5:4.2.0")
+	testImplementation("io.kotest:kotest-assertions-core:4.2.0")
+	testImplementation("io.kotest:kotest-property:4.2.0")
+	testImplementation("io.kotest:kotest-extensions-spring:4.2.0")
 	testImplementation("io.mockk:mockk:1.13.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")

@@ -55,6 +55,7 @@ create table member_product(
     id bigint not null auto_increment,
     buyer_id bigint not null,
     product_id bigint not null,
+    purchase_time datetime not null,
     primary key (id)
 );
 alter table member add foreign key (role_id) references role (id);

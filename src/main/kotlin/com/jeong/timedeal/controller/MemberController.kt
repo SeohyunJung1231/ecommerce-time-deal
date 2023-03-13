@@ -3,6 +3,7 @@ package com.jeong.timedeal.controller
 import com.jeong.timedeal.controller.model.MemberRequest
 import com.jeong.timedeal.controller.model.MemberUpdateRequest
 import com.jeong.timedeal.controller.model.OrderSheetResponse
+import com.jeong.timedeal.controller.model.ProductResponse
 import com.jeong.timedeal.repo.MemberRepository
 import com.jeong.timedeal.service.MemberService
 import com.jeong.timedeal.service.PurchaseService
@@ -45,7 +46,7 @@ class MemberController(
 
     @GetMapping("/{memberId}/products")
     @Operation(summary = "구매 상품 목록 요청", description = "해당 API 호출시, 구매한 상품 목록을 가져옵니다")
-    fun getAllPurchasedProduct(@PathVariable memberId: Long) {
-        purchaseService.fetchAllPurchasedBy(memberId)
+    fun getAllPurchasedProduct(@PathVariable memberId: Long): List<ProductResponse> {
+        return purchaseService.fetchAllPurchasedBy(memberId)
     }
 }

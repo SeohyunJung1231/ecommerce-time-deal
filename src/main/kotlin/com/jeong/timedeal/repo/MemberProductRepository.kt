@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface MemberProductRepository : JpaRepository<MemberProduct, Long> {
     fun findAllByProductId(productId: Long) : List<MemberProduct>?
+    fun findAllByBuyerId(buyerId: Long) : List<MemberProduct>?
 }

@@ -40,8 +40,7 @@ class MemberProductRepositoryTest(
         val buyerId = memberRepository.save(buyer).id
 
         val product = Product(
-            id = 30L,
-            sellerId =  sellerId,
+            sellerId = sellerId,
             saleTime = SaleTime(saleStartAt = LocalDateTime.now(), saleEndAt = LocalDateTime.now()),
             name = "cup",
             price = 10_000L,
@@ -53,12 +52,14 @@ class MemberProductRepositoryTest(
         // when
         val expected = MemberProduct(
             buyer = buyer,
-            productId = productId,
+            product = product,
             purchaseTime = LocalDateTime.now()
         )
         val actual = memberProductRepository.save(expected)
 
+
         // then
-        actual.productId shouldBe expected.productId
+        actual.product.name shouldBe expected.product.name
+        actual.product.price shouldBe expected.product.price
     }
 })

@@ -13,8 +13,9 @@ data class MemberProduct(
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     val buyer: Member,
-    @Column(name = "product_id")
-    val productId: Long,
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    val product: Product,
 
     @Column(name = "purchase_time")
     val purchaseTime: LocalDateTime
